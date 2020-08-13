@@ -4,5 +4,14 @@ var bodyParser     = require("body-parser"),
 	sanitizer  	   = require("express-sanitizer"),
 	app		       = require("express")();
 
+//server requirements
 
-//server require
+const http 	   = require("http");
+const hostname = "127.0.0.1";
+const port     = 3000;
+
+//server 
+
+app.listen(port, hostname, function(){
+	console.log("Server has Started")
+});
