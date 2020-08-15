@@ -1,0 +1,6 @@
+<form action="/blogs/<%= blog._id %>?_method=PUT" method="POST">
+    <input name="blog[title]" type="text" value="<%= blog.title %>">
+    <input name="blog[image]" type="text" value="<%= blog.image %>">
+    <textarea name="blog[body]" id="" cols="30" rows="10"><%= blog.body %></textarea>
+    <input type="submit">
+</form>

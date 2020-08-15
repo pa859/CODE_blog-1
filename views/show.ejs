@@ -1,0 +1,11 @@
+<h2>
+    <%= blog.title %>
+</h2>
+<img src="<%= blog.image %>" alt="image">
+<p>
+    <%= blog.body %>
+</p>
+<button><a href="/blogs/<%= blog._id %>/edit">update</a></button>
+<form action="/blogs/<%= blog._id %>?_method=DELETE" method="POST">
+    <button>delete</button>
+</form>

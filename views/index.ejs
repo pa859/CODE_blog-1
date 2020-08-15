@@ -1,0 +1,12 @@
+<h1>Blog app</h1>
+
+<% blogs.forEach(function(blog){ %>
+    <h2>
+        <%= blog.title %>
+    </h2>
+    <img src="<%= blog.image %>" alt="image">
+    <p>
+        <%= blog.body %>
+    </p>
+    <button><a href="blogs/<%= blog._id %>">Show more</a></button>
+    <% }); %>
