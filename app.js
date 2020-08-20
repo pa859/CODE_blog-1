@@ -5,6 +5,8 @@ var bodyParser       = require("body-parser"),
 	express 		 = require("express"),
 	app		         = express();
 
+//app config
+
 mongoose.connect("mongodb://localhost/CODE_blog");
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(expressSanitizer());
@@ -78,6 +80,44 @@ app.get("/blogs/:id", function(req, res) {
         }
     });
 })
+
+//edit route
+
+
+app.get("/blogs/:id/edit", function(req, res) {
+    Blog.findById(req.params.id, function(err, foundBlog) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.render("edit", { blog: foundBlog });
+        }
+    });
+});
+
+//update route
+
+app.put("/blogs/:id", function(req, res) {
+    req.body.blog.body = req.sanitize(req.body.blog.body)
+    Blog.findByIdAndUpdate(req.params.id, req.body.blog, function(err, updatedBlog) {
+        if (err) {
+            res.redirect("/blogs");
+        } else {
+            res.redirect("/blogs/" + req.params.id);
+        }
+    });
+});
+
+//delete route
+
+app.delete("/blogs/:id", function(req, res) {
+    Blog.findByIdAndRemove(req.params.id, function(err) {
+        if (err) {
+            res.redirect("/blogs");
+        } else {
+            res.redirect("/blogs");
+        }
+    })
+});
 
 // server 
 
